@@ -1,5 +1,9 @@
 { config, lib, pkgs, inputs, ... }:
 {
+  imports = [
+    inputs.walker.homeManagerModules.default
+  ];
+
   home.username = lib.mkDefault "ilya";
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
   home.stateVersion = "24.05";
@@ -8,6 +12,7 @@
     cowsay
     nerd-fonts.jetbrains-mono
     hyprpaper
+    starship
   ];
 
   home.file = {
@@ -35,9 +40,10 @@
     EDITOR = "nvim";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.waybar.enable = true;
+  programs.walker.enable = true;
+  programs.lazygit.enable = true;
 
   # ZSH
   programs.zsh = {
@@ -50,7 +56,19 @@
       if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
         exec Hyprland
       fi
+
+      eval "$(starship init zsh)"
     '';
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      line_break = {
+        disabled = true;
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
