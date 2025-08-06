@@ -52,7 +52,12 @@
     gcc
     btop
     ghostty
+    # mangohud
+    # protonup
   ];
+  # environment.sessionVariables = {
+  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/ilya/.steam/root/compatibilitytools.d";
+  # };
 
   home-manager = {
     useUserPackages = true;
@@ -73,4 +78,15 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport32Bit = true;
+  # };
+
+  # services.xserver.videoDrivers = ["amdgpu"]
+  # programs.steam = {
+  #   enable = true;
+  #   gamescopeSession.enable = true;
+  # };
+  # programs.gamemode.enable = true;
 }
