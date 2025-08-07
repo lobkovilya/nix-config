@@ -2,6 +2,11 @@
 {
   imports = [
     inputs.walker.homeManagerModules.default
+    ./modules/starship.nix
+    ./modules/zsh-starship.nix
+    ./modules/nvim.nix
+    ./modules/zsh.nix
+    ./modules/zsh-hyprland.nix
   ];
 
   home.username = lib.mkDefault "ilya";
@@ -12,17 +17,9 @@
     cowsay
     nerd-fonts.jetbrains-mono
     hyprpaper
-    starship
   ];
 
   home.file = {
-    # LazyVim configuration
-    ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
-    ".config/nvim/.neoconf.json".source = ./dotfiles/nvim/.neoconf.json;
-    ".config/nvim/lazyvim.json".source = ./dotfiles/nvim/lazyvim.json;
-    ".config/nvim/stylua.toml".source = ./dotfiles/nvim/stylua.toml;
-    ".config/nvim/lua".source = ./dotfiles/nvim/lua;
-
     # Hyprland
     ".config/hypr/hyprland.conf".source = ./dotfiles/hypr/hyprland.conf;
 
@@ -44,32 +41,6 @@
   programs.waybar.enable = true;
   programs.walker.enable = true;
   programs.lazygit.enable = true;
-
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    oh-my-zsh.enable = true;
-    initContent = ''
-      if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland
-      fi
-
-      eval "$(starship init zsh)"
-    '';
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      line_break = {
-        disabled = true;
-      };
-    };
-  };
 
   fonts.fontconfig.enable = true;
 
