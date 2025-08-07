@@ -27,7 +27,7 @@
 
       darwinConfigurations = {
         mezhdura = darwin.lib.darwinSystem {
-          specialArgs = { inherit self; };
+          specialArgs = { inherit self inputs; };
           modules = [ ./hosts/mezhdura ];
         };
       };

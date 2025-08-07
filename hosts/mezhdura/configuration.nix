@@ -1,8 +1,17 @@
-{self, pkgs, ... }: 
+{self, config, pkgs, inputs, ... }: 
 {
+  imports = [
+    inputs.home-manager.darwinModules.home-manager
+  ];
+
+  networking.hostName = "mezhdura"; # Define your hostname.
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ cowsay ];
+  environment.systemPackages = with pkgs; [ 
+    cowsay 
+    nixd
+  ];
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
@@ -23,5 +32,12 @@
   users.users.lobkovilya = {
     name = "lobkovilya";
     home = "/Users/lobkovilya";
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
+    users.lobkovilya = import ../../home/${config.networking.hostName}.nix;
+    backupFileExtension = "backup";
   };
 }
