@@ -15,7 +15,7 @@ let
       initrd.enable = true;
     };
   };
-  gaming = { lib, ... }: {
+  gaming = {
     environment.systemPackages = with pkgs; [
       mangohud
       protonup
