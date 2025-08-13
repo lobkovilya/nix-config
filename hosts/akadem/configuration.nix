@@ -89,9 +89,17 @@ in {
     neovim
     git
     gcc
+    gnumake
     btop
     ghostty
     firefox
+    yq
+    unzip
+    ninja
+    cmake
+    python3Full
+    clang-tools
+    gopls
   ];
 
   home-manager = {

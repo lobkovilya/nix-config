@@ -41,6 +41,10 @@
   programs.waybar.enable = true;
   programs.walker.enable = true;
   programs.lazygit.enable = true;
+  programs.fzf.enable = true;
+  programs.mise.enable = true;
+  programs.go.enable = true;
+  programs.jq.enable =true;
 
   fonts.fontconfig.enable = true;
 
