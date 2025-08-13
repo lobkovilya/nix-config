@@ -1,9 +1,48 @@
-{ config, pkgs, inputs, outputs, hyprland, ... }:
-{
+{ config, pkgs, inputs, outputs, ... }:
+let
+  llm = { lib, ... }: {
+    nixpkgs.config.rocmSupport = true;
+    environment.systemPackages = with pkgs; [
+      btop-rocm
+      rocmPackages.rocminfo
+      rocmPackages.rocm-smi
+      rocmPackages.clr.icd
+      ollama
+    ];
+    users.users.ilya.extraGroups = lib.mkAfter [ "video" "render" ];
+    hardware.amdgpu = {
+      opencl.enable = true;
+      initrd.enable = true;
+    };
+  };
+  gaming = { lib, ... }: {
+    environment.systemPackages = with pkgs; [
+      mangohud
+      protonup
+    ];
+    environment.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/ilya/.steam/root/compatibilitytools.d";
+    };
+    hardware.opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
+    hardware.enableRedistributableFirmware = true;
+    boot.initrd.kernelModules = [ "amdgpu" ];
+    services.xserver.videoDrivers = ["amdgpu"];
+    programs.steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+    programs.gamemode.enable = true;
+  };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.home-manager
+      llm
+      gaming
     ];
 
   # Bootloader.
@@ -52,16 +91,12 @@
     gcc
     btop
     ghostty
-    # mangohud
-    # protonup
+    firefox
   ];
-  # environment.sessionVariables = {
-  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/ilya/.steam/root/compatibilitytools.d";
-  # };
 
   home-manager = {
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs outputs hyprland; };
+    extraSpecialArgs = { inherit inputs outputs; };
     users.ilya = import ../../home/${config.networking.hostName}.nix;
     backupFileExtension = "backup";
   };
@@ -77,16 +112,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport32Bit = true;
-  # };
-
-  # services.xserver.videoDrivers = ["amdgpu"]
-  # programs.steam = {
-  #   enable = true;
-  #   gamescopeSession.enable = true;
-  # };
-  # programs.gamemode.enable = true;
 }

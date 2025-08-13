@@ -23,6 +23,10 @@
           specialArgs = { inherit inputs; };
           modules = [ ./hosts/akadem ];
         };
+        menton = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/menton ];
+        };
       };
 
       darwinConfigurations = {
