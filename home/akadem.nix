@@ -17,6 +17,9 @@
     cowsay
     nerd-fonts.jetbrains-mono
     hyprpaper
+    rust-analyzer
+    rustc
+    cargo
   ];
 
   home.file = {

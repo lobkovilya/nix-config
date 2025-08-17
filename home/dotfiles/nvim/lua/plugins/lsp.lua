@@ -12,6 +12,11 @@ return {
         nixd = {},
         lua_ls = {},
       },
+      diagnostics = {
+        virtual_text = false,
+        virtual_lines = { current_line = true },
+        update_in_insert = false,
+      },
     },
   },
   {
@@ -45,10 +50,35 @@ return {
       keymap = {
         preset = "super-tab",
       },
+      completion = {
+        -- don't pop the docs window while selecting with <Tab>, arrows, etc.
+        documentation = { auto_show = false },
+      },
     },
   },
   {
     "williamboman/mason.nvim",
     enabled = not is_nixos(), -- Conditionally disable mason.nvim on NixOS
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    init = function()
+      vim.g.rustaceanvim = {
+        server = {
+          settings = {
+            ["rust-analyzer"] = {
+              completion = {
+                callable = {
+                  -- "fill_arguments" (default), "add_parentheses", or "none"
+                  snippets = "add_parentheses",
+                },
+              },
+            },
+          },
+        },
+      }
+    end,
   },
 }
