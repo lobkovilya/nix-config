@@ -36,6 +36,26 @@ let
     };
     programs.gamemode.enable = true;
   };
+  clipboard = {
+    services.keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        extraConfig = ''
+          [main]
+          capslock = overload(control, esc)
+
+          [meta]
+          c = C-c
+          v = C-v
+        '';
+      };
+    };
+    environment.systemPackages = with pkgs; [
+      keyd
+      wl-clipboard
+    ];
+  };
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -43,6 +63,7 @@ in {
       inputs.home-manager.nixosModules.home-manager
       llm
       gaming
+      clipboard
     ];
 
   # Bootloader.
@@ -100,6 +121,11 @@ in {
     python3Full
     clang-tools
     gopls
+    google-chrome
+    slack
+    zoom-us
+    libappindicator-gtk3
+    nautilus
   ];
 
   home-manager = {

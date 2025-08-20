@@ -1,12 +1,12 @@
 * {
-  background-color: @background;
-  color: @foreground;
+  background-color: #2e3440;
+  color: #d8dee9;
 
   border: none;
   border-radius: 0;
   min-height: 0;
   font-family: CaskaydiaMono Nerd Font Propo;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .modules-left {

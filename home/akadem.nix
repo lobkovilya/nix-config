@@ -26,7 +26,8 @@
     # Hyprland
     ".config/hypr/hyprland.conf".source = ./dotfiles/hypr/hyprland.conf;
 
-    # Hyprpaper
+    # Hyprpaper, sources
+    #   - https://github.com/dharmx/walls
     ".config/hyprpaper".source = ./dotfiles/hyprpaper;
 
     # Waybar
@@ -47,7 +48,12 @@
   programs.fzf.enable = true;
   programs.mise.enable = true;
   programs.go.enable = true;
-  programs.jq.enable =true;
+  programs.jq.enable = true;
+
+  programs.chromium = {
+    enable = true;
+    commandLineArgs = [ "--ozone-platform-hint=wayland" ];
+  };
 
   fonts.fontconfig.enable = true;
 
