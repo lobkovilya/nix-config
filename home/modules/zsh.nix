@@ -5,5 +5,9 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh.enable = true;
+    shellAliases = {
+      kc = "kubectl";
+      kx = "kubectx";
+    };
   };
 }

@@ -34,7 +34,15 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "macchiato", -- other options: latte, mocha, frappe, macchiato
+      flavour = "latte", -- other options: latte, mocha, frappe, macchiato
+      integrations = { neotree = true },
+      custom_highlights = function(C)
+        return {
+          NeoTreeCursorLine = { bg = C.surface0 }, -- pick a darker shade (try C.mantle/surface0/surface1)
+          CursorLine = { bg = C.surface0 },
+          CursorColumn = { bg = C.surface0 },
+        }
+      end,
     },
   },
   {
@@ -80,5 +88,22 @@ return {
         },
       }
     end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    init = function()
+      local bufline = require("catppuccin.groups.integrations.bufferline")
+      function bufline.get()
+        return bufline.get_theme()
+      end
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        sh = {}, -- turn off shfmt
+      },
+    },
   },
 }

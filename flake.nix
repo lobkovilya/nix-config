@@ -34,6 +34,10 @@
           specialArgs = { inherit self inputs; };
           modules = [ ./hosts/mezhdura ];
         };
+        sf = darwin.lib.darwinSystem {
+          specialArgs = { inherit self inputs; };
+          modules = [ ./hosts/sf ];
+        };
       };
     };
 }
