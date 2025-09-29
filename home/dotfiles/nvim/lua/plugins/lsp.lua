@@ -5,6 +5,13 @@ end
 
 return {
   {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+      news = { lazyvim = false, neovim = false },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
@@ -46,12 +53,6 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
-  },
-  {
     "saghen/blink.cmp",
     version = "v1.3.1",
     opts = {
@@ -65,7 +66,7 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     enabled = not is_nixos(), -- Conditionally disable mason.nvim on NixOS
   },
   {
@@ -89,15 +90,15 @@ return {
       }
     end,
   },
-  {
-    "akinsho/bufferline.nvim",
-    init = function()
-      local bufline = require("catppuccin.groups.integrations.bufferline")
-      function bufline.get()
-        return bufline.get_theme()
-      end
-    end,
-  },
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   init = function()
+  --     local bufline = require("catppuccin.groups.integrations.bufferline")
+  --     function bufline.get()
+  --       return bufline.get_theme()
+  --     end
+  --   end,
+  -- },
   {
     "stevearc/conform.nvim",
     opts = {
