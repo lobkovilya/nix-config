@@ -198,15 +198,4 @@ return {
       },
     },
   },
-  {
-    "nvim-neotest/neotest",
-    dependencies = { "nvim-neotest/neotest-go" },
-    opts = {
-      adapters = {
-        ["neotest-go"] = {
-          args = { "-ginkgo.v", "-ginkgo.progress" }, -- Ginkgo V2 flags via go test
-        },
-      },
-    },
-  }
 }
