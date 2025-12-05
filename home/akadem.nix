@@ -7,6 +7,7 @@
     ./modules/nvim.nix
     ./modules/zsh.nix
     ./modules/zsh-hyprland.nix
+    ./modules/rust.nix
   ];
 
   home.username = lib.mkDefault "ilya";
@@ -17,9 +18,6 @@
     cowsay
     nerd-fonts.jetbrains-mono
     hyprpaper
-    rust-analyzer
-    rustc
-    cargo
   ];
 
   home.file = {

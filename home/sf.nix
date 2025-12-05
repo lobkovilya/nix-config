@@ -5,6 +5,7 @@
     ./modules/zsh-starship.nix
     # ./modules/nvim.nix
     ./modules/zsh.nix
+    ./modules/rust.nix
   ];
 
   home.username = lib.mkDefault "ilya.lobkov@konghq.com";
