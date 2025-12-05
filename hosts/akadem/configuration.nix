@@ -126,6 +126,7 @@ in {
     zoom-us
     libappindicator-gtk3
     nautilus
+    usbutils
   ];
 
   home-manager = {
