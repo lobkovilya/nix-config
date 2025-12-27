@@ -3,7 +3,7 @@
   imports = [
     ./modules/starship.nix
     ./modules/zsh-starship.nix
-    ./modules/nvim.nix
+    # ./modules/nvim.nix
     ./modules/zsh.nix
     ./modules/rust.nix
   ];
