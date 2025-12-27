@@ -6,6 +6,7 @@
     # ./modules/nvim.nix
     ./modules/zsh.nix
     ./modules/rust.nix
+    ./modules/go.nix
   ];
 
   home.username = lib.mkDefault "lobkovilya";

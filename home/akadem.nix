@@ -8,6 +8,7 @@
     ./modules/zsh.nix
     ./modules/zsh-hyprland.nix
     ./modules/rust.nix
+    ./modules/go.nix
   ];
 
   home.username = lib.mkDefault "ilya";
